@@ -1,0 +1,128 @@
+﻿@model List<HamroDokaan.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+@if (TempData["Added"] != null)
+{
+    <div id="toast" class="toast">
+        @TempData["Added"]
+    </div>
+}
+
+<style>
+    .toast{
+        font-family:'Baskerville Old Face';
+        font-size:medium;
+        animation:ease-in-out;
+        color:forestgreen;
+
+    }
+
+    .page-title {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product-card {
+        width: 240px;
+        background: #fff;
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        transition: 0.3s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+        }
+
+    .product-img {
+        width: 100%;
+        height: 150px;
+        background: #fdf6ec;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .product-name {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .product-price {
+        color: #e76f51;
+        font-weight: bold;
+        margin: 8px 0;
+    }
+
+    .add-btn {
+        display: block;
+        text-align: center;
+        background: #e76f51;
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+
+        .add-btn:hover {
+            background: #f4a261;
+        }
+</style>
+
+<div class="page-title">
+    Products
+</div>
+
+<div class="product-container">
+
+    @foreach (var p in Model)
+    {
+        <div class="product-card">
+
+            <!-- ✅ IMAGE DISPLAY FIX -->
+            <div class="product-img">
+                <img src="~/img/@(string.IsNullOrEmpty(p.Product_img) ? "no-image.png" : p.Product_img)"
+                     alt="@p.Product_Name" />
+            </div>
+
+            <div class="product-name">
+                @p.Product_Name
+            </div>
+
+            <div class="product-price">
+                Rs. @p.Product_Price
+            </div>
+
+            <a class="add-btn" asp-action="AddToCart" asp-route-id="@p.Product_Id">
+                Add to Cart
+            </a>
+
+        </div>
+    }
+
+</div>
+<script>
+    setTimeout(() => {
+        const toast = document.getElementById("toast");
+        if (toast) toast.remove();
+    }, 3000);
+</script>

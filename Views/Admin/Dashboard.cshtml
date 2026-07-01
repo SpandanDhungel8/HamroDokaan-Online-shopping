@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-content">
+
+    <h1>Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card users">
+            <h2>@ViewBag.TotalUsers</h2>
+            <p>Approved Users</p>
+        </div>
+
+        <div class="card pending">
+            <h2>@ViewBag.PendingOrders</h2>
+            <p>Pending Orders</p>
+        </div>
+
+        <div class="card completed">
+            <h2>@ViewBag.CompletedOrders</h2>
+            <p>Completed Orders</p>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .dashboard-content {
+        padding: 30px;
+    }
+
+        
+        .dashboard-content h1 {
+            margin-bottom: 25px;
+        }
+
+    .cards {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        width: 220px;
+        text-align: center;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Numbers */
+        .card h2 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .card p {
+            margin-top: 10px;
+            color: gray;
+        }
+
+       
+        .card.users {
+            border-left: 6px solid #10b981;
+        }
+
+        .card.pending {
+            border-left: 6px solid #f59e0b;
+        }
+
+        .card.completed {
+            border-left: 6px solid #3b82f6;
+        }
+</style>

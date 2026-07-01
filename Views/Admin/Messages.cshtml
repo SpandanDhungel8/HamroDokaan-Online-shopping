@@ -1,0 +1,79 @@
+﻿@model List<HamroDokaan.Models.ContactMessage>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="messages-content">
+
+    <h1>Customer Messages</h1>
+
+    <div class="cards-container">
+
+        @foreach (var msg in Model)
+        {
+            <div class="message-card">
+
+                <div class="card-header">
+                    <h3>@msg.Name</h3>
+                    <span>@msg.Email</span>
+                </div>
+
+                <div class="card-body">
+                    <p>@msg.Message</p>
+                </div>
+            <div class="btn-danger">
+                <a asp-action="DeleteMessages" asp-controller="Admin"asp-route-id="@msg.Id">Delete</a>
+            </div>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+<style>
+   .messages-content {
+        padding: 30px;
+    }
+
+        .messages-content h1 {
+            margin-bottom: 25px;
+        }
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .message-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        transition: 0.3s;
+        border-left: 5px solid #3b82f6;
+
+        .message-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .card-header span {
+        font-size: 13px;
+        color: gray;
+    }
+
+    .card-body {
+        margin-top: 12px;
+    }
+
+        .card-body p {
+            color: #374151;
+            line-height: 1.5;
+        }
+
+</style>

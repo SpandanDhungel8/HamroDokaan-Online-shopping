@@ -2,49 +2,123 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HamroDokaan</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HamroDokaan.styles.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background: #fdf6ec;
+            }
+
+          
+            .header {
+                padding: 10px 20px;
+                border-bottom: 1px solid #ddd;
+                background: #f8f8f8;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: black;
+                gap: 12px;
+            }
+
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, #f4a261, #e76f51);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 4px 4px 0 #d8c8b2;
+            }
+
+            .logo:hover .logo-icon {
+                transform: rotate(-8deg) scale(1.1);
+                box-shadow: 6px 6px 0 #d8c8b2;
+            }
+
+            .logo-text {
+                font-size: 22px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+                .logo-text span {
+                    color: #e76f51;
+                }
+
+            .logo:hover .logo-text {
+                letter-spacing: 1px;
+            }
+
+         
+            .nav-links {
+                display: flex;
+                gap: 20px;
+            }
+
+                .nav-links a {
+                    text-decoration: none;
+                    color: #333;
+                    font-size: 14px;
+                    padding: 8px 14px;
+                    border-radius: 10px;
+                    transition: 0.3s;
+                }
+
+                    .nav-links a:hover {
+                        background: #e76f51;
+                        color: white;
+                        transform: translateY(-2px);
+                    }
+
+            
+            .main {
+                padding: 15px 20px;
+            }
+    </style>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HamroDokaan</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <div class="header">
+
+        <a asp-controller="Home" asp-action="Index" class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-store"></i>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <div class="logo-text">
+                Hamro<span>Dokaan</span>
+            </div>
+        </a>
+
+
+        <div class="nav-links">
+            <a asp-controller="Home" asp-action="AboutUs">About Us</a>
+            <a asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+        </div>
+
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - HamroDokaan - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+ 
+    <div class="main">
+        @RenderBody()
+    </div>
+
 </body>
 </html>

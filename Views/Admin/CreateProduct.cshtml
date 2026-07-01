@@ -1,0 +1,146 @@
+﻿@model HamroDokaan.Models.Product
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="product-container">
+
+    <div class="product-card">
+        <h2>Add New Product</h2>
+
+        <form asp-action="CreateProduct" method="post" enctype="multipart/form-data">
+
+            <div class="input-group">
+                <label>Product Name</label>
+                <input asp-for="Product_Name" placeholder="Enter product name" />
+            </div>
+
+            <div class="input-group">
+                <label>Price</label>
+                <input asp-for="Product_Price" placeholder="Enter price" />
+            </div>
+
+            <div class="input-group">
+                <label>Product Image</label>
+               
+                <input type="file" asp-for="ImageFile" id="imgInput" />
+            </div>
+
+            <div class="image-preview">
+                <img id="previewImg" src="https://via.placeholder.com/150" />
+            </div>
+
+            <div class="input-group">
+                <label>Category</label>
+                <select asp-for="Category_Id" asp-items="ViewBag.Categories">
+                    <option value=""> Select Category </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-create">Create Product</button>
+
+        </form>
+    </div>
+
+</div>
+
+<style>
+
+    .product-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 85vh;
+    }
+
+    .product-card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        width: 360px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        border: 1px solid #f1e3d3;
+    }
+
+        .product-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e76f51;
+        }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+        .input-group label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #e6d5c3;
+            outline: none;
+            background: #fff8f0;
+            transition: 0.3s;
+        }
+
+            .input-group input:focus,
+            .input-group select:focus {
+                border-color: #e76f51;
+                background: #ffffff;
+            }
+
+    .image-preview {
+        text-align: center;
+        margin: 15px 0;
+    }
+
+        .image-preview img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #f1e3d3;
+        }
+
+    .btn-create {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #f4a261, #e76f51);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(231,111,81,0.3);
+        }
+
+</style>
+
+
+<script>
+    document.getElementById("imgInput").addEventListener("change", function (e) {
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById("previewImg").src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

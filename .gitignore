@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.log
+wwwroot/img/*
+!wwwroot/img/no-image.png

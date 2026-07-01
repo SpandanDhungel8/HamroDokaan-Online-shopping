@@ -1,0 +1,46 @@
+﻿@model HamroDokaan.Models.Category
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="form-container">
+
+    <h2>Add Category</h2>
+
+    <form asp-action="CreateCategory" method="post">
+
+        <input asp-for="Category_Name" placeholder="Enter category name" />
+
+        <button type="submit">Create</button>
+
+    </form>
+
+</div>
+
+<style>
+    .form-container {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        width: 350px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 10px;
+        background: #e76f51;
+        color: white;
+        border: none;
+        border-radius: 8px;
+    }
+</style>

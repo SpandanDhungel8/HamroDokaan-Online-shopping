@@ -1,0 +1,143 @@
+﻿@model List<HamroDokaan.Models.Product>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="page">
+
+    <div class="header">
+        <h2> Products</h2>
+        <a asp-action="CreateProduct" class="btn-add">
+            + Add Product
+        </a>
+    </div>
+
+    <div class="card-container">
+        @foreach (var p in Model)
+        {
+            <div class="product-card">
+
+                <div class="img-box">
+                    <img src="~/img/@p.Product_img" />
+                </div>
+
+                <div class="product-info">
+                    <h3>@p.Product_Name</h3>
+                    <p class="price">Rs. @p.Product_Price</p>
+                </div>
+
+                <div class="actions">
+                    <a asp-action="DeleteProduct" asp-route-id="@p.Product_Id" class="btn-delete">
+                        Delete
+                    </a>
+                </div>
+
+            </div>
+        }
+    </div>
+
+</div>
+
+<style>
+
+    .page {
+        padding: 25px;
+        color: #333;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+        .header h2 {
+            font-size: 26px;
+            color: #e76f51;
+        }
+
+    .btn-add {
+        background: linear-gradient(135deg, #f4a261, #e76f51);
+        padding: 10px 16px;
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(231,111,81,0.3);
+        }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 22px;
+    }
+
+    .product-card {
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        transition: 0.3s;
+        border: 1px solid #f1e3d3;
+    }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+    .img-box {
+        height: 170px;
+        background: #fff8f0;
+    }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .product-info {
+        padding: 15px;
+        text-align: center;
+    }
+
+        .product-info h3 {
+            margin: 5px 0;
+            font-size: 17px;
+        }
+
+    .price {
+        color: #e76f51;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .actions {
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-delete {
+        background: #ffe5e0;
+        color: #e76f51;
+        padding: 8px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+        .btn-delete:hover {
+            background: #e76f51;
+            color: white;
+        }
+
+</style>

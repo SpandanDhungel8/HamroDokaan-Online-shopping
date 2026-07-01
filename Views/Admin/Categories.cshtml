@@ -1,0 +1,82 @@
+﻿@model List<HamroDokaan.Models.Category>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="page">
+
+    <div class="header">
+        <h2>Categories</h2>
+        <a asp-action="CreateCategory" class="btn-add">
+            <i class="fa-solid fa-plus"></i> Add Category
+        </a>
+    </div>
+
+    <div class="card-container">
+        @foreach (var cat in Model)
+        {
+            <div class="card">
+                <h3>@cat.Category_Name</h3>
+                <div class="actions">
+                    <a asp-action="DeleteCategory" asp-route-id="@cat.Category_Id" class="btn-delete">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<style>
+    .page {
+        padding: 20px;
+    }
+
+    /* Header */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .btn-add {
+        background: #f4a261;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    /* Cards */
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        transition: 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .actions {
+        margin-top: 10px;
+    }
+
+    .btn-delete {
+        background: #e76f51;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+</style>

@@ -1,8 +1,215 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #f4e1d2, #fdf6ec);
+    }
+
+
+    .top-bar {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s ease;
+        position: relative;
+        backdrop-filter: blur(6px);
+    }
+
+    .login {
+        color: #333;
+        border: 1px solid rgba(0,0,0,0.2);
+        background: rgba(255,255,255,0.5);
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+
+        .login:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+    
+    .register {
+        background: linear-gradient(135deg, #e76f51, #f4a261);
+        color: white;
+        box-shadow: 4px 4px 0 #d8c8b2;
+    }
+
+        .register:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 6px 6px 0 #cbb89d;
+        }
+.myShop{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 60px;
+    }
+    .myShop h1 {
+        font-size: 52px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        color: #2b2b2b;
+        text-shadow: 3px 3px 0 #e8d8c3;
+        transition: 0.3s;
+    }
+
+        
+    .myShop h1 span {
+            color: #e76f51;
+            position:center;
+        }
+
+        
+        .myShop h1:hover {
+            transform: translateY(-3px) rotate(-1deg);
+            text-shadow: 5px 5px 0 #d8c8b2;
+        }
+   
+    .shop-btn {
+        padding: 14px 32px;
+        border-radius: 16px;
+        background: #2b2b2b;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+        display: inline-block;
+        box-shadow: 5px 5px 0 #d8c8b2;
+        position: relative;
+    }
+
+        .shop-btn:hover {
+            transform: translateY(-5px) rotate(-1deg);
+            box-shadow: 8px 8px 0 #cbb89d;
+        }
+
+   
+    .section-title {
+        margin: 50px 0 20px;
+        font-size: 26px;
+        color: #2b2b2b;
+    }
+
+   
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+    }
+
+    .card {
+        background: #fff8f0;
+        border-radius: 18px;
+        padding: 15px;
+        transition: 0.3s;
+        box-shadow: 5px 5px 0 #e6d5c3;
+    }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 10px 10px 0 #d8c3a5;
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card h4 {
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+    .price {
+        color: #e76f51;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+   
+    .buy-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 12px;
+        background: #2b2b2b;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .buy-btn:hover {
+            transform: scale(1.08);
+            background: black;
+        }
+</style>
+
+
+<div class="top-bar">
+    <a asp-controller="Account" asp-action="Login" class="btn login">Login</a>
+    <a asp-controller="Account" asp-action="Register" class="btn register">Register</a>
+</div>
+
+
+<div class="myShop">
+    <h1>Hamro<span>Dokaan</span></h1>
+    <p style="font-size:large">Right Person at the Right Shop</p>
+    <a asp-controller="Products" asp-action="Index" class="shop-btn">Explore Store</a>
+</div>
+
+<h2 class="section-title">Trending Now</h2>
+
+<div class="products">
+
+    <div class="card">
+        <img src="img/argentinaJersey.jpg" />
+        <h4>Argentina Jersey(A grade)</h4>
+        <div class="price">Rs. 2,???</div>
+        <a asp-action="Register" asp-controller="Account" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="card">
+        <img src="img/boot.jpg" />
+        <h4>Chelsea Boot</h4>
+        <div class="price">Rs. 3,???</div>
+        <a asp-action="Register" asp-controller="Account" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="card">
+        <img src="~/img/Realme Watch.jpg" />
+        <h4>Realme Watch 3</h4>
+        <div class="price">Rs. 5,???</div>
+        <a asp-action="Register" asp-controller="Account" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="card">
+        <img src="~/img/MuscleBlaze.jpg" />
+        <h4>MuscleBlaze Whey Protein</h4>
+        <div class="price">Rs. 4,???</div>
+            <a asp-action="Register" asp-controller="Account" class="buy-btn">Buy Now</a>
+    </div>
+    <div class="card">
+        <img src="~/img/mac.jpg" />
+        <h4>Apple MacBook Neo</h4>
+        <div class="price">Rs. 1,??,???</div>
+            <a asp-action="Register" asp-controller="Account" class="buy-btn">Buy Now</a>
+    </div>
+
 </div>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HamroDokaan-Online-shopping\\HamroDokaan\\HamroDokaan.csproj": {}
+    "D:\\HamroDokaan-Online-shopping\\HamroDokaan.csproj": {}
   },
   "projects": {
-    "D:\\HamroDokaan-Online-shopping\\HamroDokaan\\HamroDokaan.csproj": {
+    "D:\\HamroDokaan-Online-shopping\\HamroDokaan.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HamroDokaan-Online-shopping\\HamroDokaan\\HamroDokaan.csproj",
+        "projectUniqueName": "D:\\HamroDokaan-Online-shopping\\HamroDokaan.csproj",
         "projectName": "HamroDokaan",
-        "projectPath": "D:\\HamroDokaan-Online-shopping\\HamroDokaan\\HamroDokaan.csproj",
+        "projectPath": "D:\\HamroDokaan-Online-shopping\\HamroDokaan.csproj",
         "packagesPath": "C:\\Users\\SPANDAN\\.nuget\\packages\\",
-        "outputPath": "D:\\HamroDokaan-Online-shopping\\HamroDokaan\\obj\\",
+        "outputPath": "D:\\HamroDokaan-Online-shopping\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +51,28 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

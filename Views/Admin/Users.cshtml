@@ -1,0 +1,160 @@
+﻿@model List<HamroDokaan.Models.User>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="users-content">
+
+    <h1>Manage Users</h1>
+
+    <div class="table-card">
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.User_Email</td>
+
+                        <td>@user.User_Role</td>
+
+                        <td>
+                            @if (user.IsApproved)
+                            {
+                                <span class="status approved">Approved</span>
+                            }
+                            else
+                            {
+                                <span class="status pending">Pending</span>
+                            }
+                        </td>
+
+                        <td>
+                            @if (!user.IsApproved)
+                            {
+                                <a class="btn approve" asp-action="Approve" asp-route-id="@user.User_Id">Approve</a>
+                                <a class="btn reject" asp-action="Reject" asp-route-id="@user.User_Id">Reject</a>
+                            }
+                            else
+                            {
+                                <a class="btn revert" asp-action="Revert" asp-route-id="@user.User_Id">Revert</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+
+    /* Page */
+    .users-content {
+        padding: 30px;
+    }
+
+        .users-content h1 {
+            margin-bottom: 25px;
+        }
+
+    /* Card container (same as dashboard cards) */
+    .table-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Table */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        /* Header */
+        .styled-table th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid #eee;
+        }
+
+        /* Rows */
+        .styled-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        /* Hover */
+        .styled-table tr:hover {
+            background: #f9fafb;
+        }
+
+    /* Status */
+    .status {
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+        .status.approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+    /* Buttons */
+    .btn {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        text-decoration: none;
+        margin-right: 5px;
+        transition: 0.3s;
+    }
+
+        /* Button colors SAME as dashboard accents */
+        .btn.approve {
+            background: #10b981;
+            color: white;
+        }
+
+            .btn.approve:hover {
+                background: #059669;
+            }
+
+        .btn.reject {
+            background: #ef4444;
+            color: white;
+        }
+
+            .btn.reject:hover {
+                background: #dc2626;
+            }
+
+        .btn.revert {
+            background: #3b82f6;
+            color: white;
+        }
+
+            .btn.revert:hover {
+                background: #2563eb;
+            }
+
+</style>

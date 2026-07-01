@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer - HamroDokaan</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+            body {
+                margin: 0;
+                font-family: Arial;
+                display: flex;
+                background: #fdf6ec;
+            }
+
+            .sidebar {
+                width: 240px;
+                height: 100vh;
+                background: #fff8f0;
+                box-shadow: 4px 0 0 #e6d5c3;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, #f4a261, #e76f51);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin: auto;
+                font-size: 22px;
+            }
+
+            .logo-text {
+                font-weight: bold;
+                margin-top: 8px;
+            }
+
+            .menu {
+                width: 100%;
+            }
+
+                .menu a {
+                    display: block;
+                    padding: 10px 15px;
+                    margin-bottom: 10px;
+                    text-decoration: none;
+                    color: #333;
+                    border-radius: 10px;
+                    transition: 0.3s;
+                }
+
+                    .menu a:hover {
+                        background: #e76f51;
+                        color: white;
+                        transform: translateX(5px);
+                    }
+
+            .logout {
+                margin-top: auto;
+                width: 100%;
+            }
+
+                .logout a {
+                    display: block;
+                    padding: 10px;
+                    background: #e76f51;
+                    color: white;
+                    text-align: center;
+                    border-radius: 10px;
+                    text-decoration: none;
+                }
+
+            .main {
+                flex: 1;
+                padding: 25px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-store"></i>
+            </div>
+            <div class="logo-text">
+                HamroDokaan
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <div class="menu">
+
+            <a asp-controller="Customer" asp-action="Categories">
+                <i class="fa-solid fa-layer-group"></i> Categories
+            </a>
+
+            <a asp-controller="Customer" asp-action="Products">
+                <i class="fa-solid fa-bag-shopping"></i> Products
+            </a>
+
+            <a asp-controller="Customer" asp-action="Orders">
+                <i class="fa-solid fa-box"></i> Orders
+            </a>
+
+            <a asp-controller="Customer" asp-action="Cart">
+                <i class="fa-solid fa-cart-shopping"></i> Cart
+            </a>
+
+        </div>
+
+        <!-- LOGOUT -->
+        <div class="logout">
+            <a asp-controller="Customer" asp-action="Logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
