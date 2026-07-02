@@ -1,0 +1,149 @@
+﻿@model List<Order>
+
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
+
+    .page-title {
+        text-align: center;
+        margin: 20px 0;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .order-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        width: 90%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+        .order-card:hover {
+            transform: scale(1.01);
+        }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .status {
+        padding: 5px 12px;
+        border-radius: 20px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .Pending {
+        background: orange;
+    }
+
+    .Processing {
+        background: #007bff;
+    }
+
+    .Shipped {
+        background: purple;
+    }
+
+    .Completed {
+        background: green;
+    }
+
+    .items ul {
+        padding-left: 20px;
+    }
+
+    .actions a {
+        text-decoration: none;
+        margin: 5px;
+        padding: 6px 12px;
+        border-radius: 5px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .btn-pending {
+        background: orange;
+    }
+
+    .btn-processing {
+        background: #007bff;
+    }
+
+    .btn-shipped {
+        background: purple;
+    }
+
+    .btn-completed {
+        background: green;
+    }
+
+    .actions a:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<h2 class="page-title"> Admin - Order Management</h2>
+
+@foreach (var order in Model)
+{
+    <div class="order-card">
+
+        <div class="order-header">
+            <div>
+                <h4>Order #@order.Order_Id</h4>
+                <small><b>Customer:</b> @order.User?.User_Email</small><br />
+                <small><b>Address:</b> @order.Address></small><br />
+                <small><b>Payment:</b> @order.PaymentMethod</small>
+            </div>
+
+            <div class="status @order.Status">
+                @order.Status
+            </div>
+        </div>
+
+        <div class="items">
+            <h5>Items</h5>
+            <ul>
+                @foreach (var item in order.OrderItems)
+                {
+                    <li>
+                        <b>@item.Product.Product_Name</b> — Qty: @item.Quantity
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="actions" style="margin-top:15px;">
+            <a class="btn-pending"
+               asp-action="UpdateOrderStatus"
+               asp-route-id="@order.Order_Id"
+               asp-route-status="Pending">Pending</a>
+
+            <a class="btn-processing"
+               asp-action="UpdateOrderStatus"
+               asp-route-id="@order.Order_Id"
+               asp-route-status="Processing">Processing</a>
+
+            <a class="btn-shipped"
+               asp-action="UpdateOrderStatus"
+               asp-route-id="@order.Order_Id"
+               asp-route-status="Shipped">Shipped</a>
+
+            <a class="btn-completed"
+               asp-action="UpdateOrderStatus"
+               asp-route-id="@order.Order_Id"
+               asp-route-status="Completed">Completed</a>
+        </div>
+
+    </div>
+}

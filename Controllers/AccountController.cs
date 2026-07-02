@@ -26,39 +26,45 @@ namespace HamroDokaan.Controllers
             }
             return View(user);
         }
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(User user)
         {
-          
             if (user.User_Email == "spandandhungel8@gmail.com" &&
                 user.User_Password == "StrongPass123!")
             {
                 HttpContext.Session.SetString("Role", "Admin");
                 HttpContext.Session.SetString("Email", user.User_Email);
-                return RedirectToAction("Dashboard","Admin");
+                return RedirectToAction("Dashboard", "Admin");
             }
+
             var usr = context.Users
                 .FirstOrDefault(u => u.User_Email == user.User_Email &&
                                      u.User_Password == user.User_Password);
-            
+
             if (usr == null)
             {
                 ViewBag.Error = "Invalid Credentials";
                 return View();
             }
+
             if (!usr.IsApproved)
             {
                 ViewBag.Error = "Your account is not approved yet";
                 return View();
             }
+
+            HttpContext.Session.SetInt32("UserId", usr.User_Id);
+
             HttpContext.Session.SetString("Role", usr.User_Role);
             HttpContext.Session.SetString("Email", usr.User_Email);
 
-            return RedirectToAction("Products","Customer");
+            return RedirectToAction("Products", "Customer");
         }
         public IActionResult Logout()
         {

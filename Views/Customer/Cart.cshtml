@@ -82,6 +82,19 @@
         margin-top: 20px;
         color: #e76f51;
     }
+
+    .btn-checkout {
+        text-decoration:none;
+        background: #e76f51;
+        color: white;
+        border: none;
+        padding: 4px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .btn-checkout {
+            background: #f4a261;
+    }
 </style>
 
 <h2> Your Cart</h2>
@@ -119,11 +132,13 @@
                asp-route-id="@item.Cart_Id">
                 Remove
             </a>
+          
         </div>
-
-    </div>
+       
+    </div> 
+   
 }
-
+<a asp-action="Checkout" class="btn-checkout">Proceed to Checkout</a>
 <div class="grand-total">
     Total: Rs. @total
 </div>

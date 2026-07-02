@@ -1,6 +1,7 @@
 ﻿using HamroDokaan.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace HamroDokaan.Controllers
 {
@@ -183,8 +184,28 @@ namespace HamroDokaan.Controllers
             if (!IsAdmin())
                 return RedirectToAction("Login", "Account");
 
-            var orders = context.Orders.ToList();
+            var orders = context.Orders
+                .Include(o => o.User)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                .ToList();
+
             return View(orders);
+        }
+        public IActionResult UpdateOrderStatus(int id, string status)
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login", "Account");
+
+            var order = context.Orders.Find(id);
+
+            if (order != null)
+            {
+                order.Status = status;
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Orders");
         }
         public IActionResult CreateCategory()
         {

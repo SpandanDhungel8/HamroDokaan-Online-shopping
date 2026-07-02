@@ -5,12 +5,10 @@
 @{
     ViewData["Title"] = "Register";
 }
-@if (TempData["Message"] != null)
-{
-    <div style="color: lightgreen; margin-bottom: 10px;">
-        @TempData["Message"]
-    </div>
-}
+
+
+
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -122,6 +120,41 @@
             .Home-link a:hover {
                 text-decoration: underline;
             }
+
+    .alert-box {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .alert-success {
+        background-color: #e6f9f0;
+        color: #1e7e34;
+        border-left: 5px solid #28a745;
+    }
+
+    .alert-icon {
+        font-size: 18px;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
 
 <div class="register-card">
@@ -129,6 +162,14 @@
     <div class="register-title">Create Account</div>
 
     <form asp-action="Register" method="post">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert-box alert-success">
+                <span class="alert-icon"></span>
+                <span>@TempData["Message"]</span>
+            </div>
+        }
+
 
         <div asp-validation-summary="All" style="color:red"></div>
 
