@@ -25,11 +25,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(); // ✅ FIXED
+app.UseStaticFiles(); 
 
 app.UseRouting();
 
-app.UseSession(); // ✅ CORRECT
+app.UseSession();
 
 app.UseAuthorization();
 
