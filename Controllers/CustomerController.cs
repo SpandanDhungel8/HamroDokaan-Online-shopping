@@ -216,7 +216,7 @@ namespace HamroDokaan.Controllers
 
             context.SaveChanges();
 
-            return RedirectToAction("MyOrders");
+            return RedirectToAction("Orders");
         }
         public IActionResult Orders()
         {

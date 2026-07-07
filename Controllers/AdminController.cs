@@ -257,6 +257,22 @@ namespace HamroDokaan.Controllers
             var prod = context.Products.ToList();
             return View(prod);
         }
+        public IActionResult EditProduct(int id ) {
+            var prod = context.Products.FirstOrDefault(p => p.Product_Id == id);
+            return View(prod);
+        }
+        [HttpPost]
+        public IActionResult EditProduct(Product prod)
+        {
+            if (prod == null) { return NotFound(); }
+            if (ModelState.IsValid)
+            {
+                context.Products.Update(prod);
+                context.SaveChanges();
+                return RedirectToAction("Products");
+            }
+            return View(prod);
+        }
         public IActionResult Categories()
         {
             var catgry = context.Categories.ToList();
